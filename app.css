@@ -1,0 +1,1356 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');/* Temel Stiller */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Taşmayı önleyen en kritik satır */
+}
+body {
+    font-family: "Fira Sans", sans-serif;
+    /* font-weight: bold; */
+    margin: 0;
+    padding: 0;
+    background-color: #fdf1b6; /* Mor arka plan rengi */
+    color: #36005f; /* Beyaz metin rengi */
+}
+
+.back-link{
+    color: white;
+    text-decoration: none;
+}
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Header */
+header {
+    background-color: #941ee9; /* Koyu gri header arka planı */
+    padding: 20px 0;
+}
+/* Hero (Giriş) Hizalaması */
+.hero-flex {
+    display: flex;
+    align-items: center;    /* Dikeyde ortalar */
+    justify-content: space-between; /* Yazıyı sola, görseli sağa iter */
+    gap: 50px;              /* Aralarındaki boşluk */
+    min-height: 80vh;       /* Sayfanın büyük kısmını kaplasın */
+}
+.hero-content {
+    flex: 1;                /* Yarı alanı kapla */
+}
+.hero-image-container {
+    flex: 1;/* Diğer yarı alanı kapla */
+    display: flex;
+    justify-content: center;/* Görseli kendi içinde ortala */
+}
+.image-frame img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;/* Tasarımına uygun yuvarlatma */
+}
+/* Video'nun kutu içine yerleşimi */
+.dikey-kutu video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Videoyu boşluk bırakmadan kutuya yayar */
+    object-position: center;
+    display: block;
+    border-radius: 8px; /* Eğer kartın köşeleri ovalliyse bunu uygula */
+    transition: transform 0.3s ease; /* Hover efekti için hazırlık */
+}
+/* Kartın üzerine gelindiğinde videoya hafif bir zoom eklemek istersen */
+.project-card:hover video {
+    transform: scale(1.05);
+}
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+    .hero-flex {
+        flex-direction: column-reverse; /* Mobilde görsel üste, yazı alta (veya tam tersi) */
+        text-align: center;
+    }
+}
+.logo a{
+    text-decoration: none;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    color: #ffffff;
+}
+.logo img {
+    height: 40px; /* Logo yüksekliği */
+}
+.menu-icon {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.menu-icon span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 2px;
+}
+/* Hero Section */
+.hero-section {
+    padding: 100px 0;
+    position: relative; /* Arka plan şekillerini konumlandırmak için */
+}
+.hero-section .container {
+    flex-direction: column; /* Mobil uyumluluk için dikey düzen */
+    text-align: center;
+}
+/* Arka Plan Şekilleri*/
+/* Kapsayıcıyı arka plana sabitleyelim */
+.shapes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none; /* Mouse ile şekillere tıklanmasını engeller, alttaki butonlar çalışır */
+}
+
+/* Genel Şekil Özellikleri */
+.shape {
+    position: absolute;
+    background: rgba(181, 82, 230, 0.549); /* Pastel bir pembe, şeffaf */
+    animation: float 8s linear infinite;
+    bottom: -150px; /* Alttan başlayıp yukarı çıkacaklar */
+}
+
+/* Farklı Şekillerin Tasarımı */
+.circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.square {
+    width: 60px;
+    height: 60px;
+    background: rgba(73, 198, 243, 0.539); /* Mavi tonu */
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 80px solid rgba(116, 207, 252, 0.621); /* Yeşil tonu */
+    background: transparent;
+}
+
+.small {
+    transform: scale(0.5);
+    opacity: 0.5;
+}
+
+/* Şekillerin Başlangıç Konumları ve Hızları */
+.shape:nth-child(1) { left: 10%; animation-duration: 15s; }
+.shape:nth-child(2) { left: 30%; width: 120px; height: 120px; animation-duration: 25s; animation-delay: 2s; }
+.shape:nth-child(3) { left: 70%; animation-duration: 20s; animation-delay: 4s; }
+.shape:nth-child(4) { left: 85%; animation-duration: 18s; animation-delay: 1s; }
+.shape:nth-child(5) { left: 50%; animation-duration: 22s; }
+
+/* Yüzme Animasyonu */
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+/* Hero İçeriği */
+.hero-content {
+    margin-bottom: 50px;
+}
+.hero-title {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+.hero-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}    
+ @media (max-width: 768px) {   
+    .hero-text {
+    max-width: 750px; /* Yazının çok uzayıp okunurluğu bozmasını engeller */
+    margin: 0 auto 40px; /* Üstte 0 (başlığa yakın), altta 40px (görsele uzak) */
+    font-size: 1.1rem;
+    color: #2f0252;
+}
+    /* margin-bottom: 30px; */
+}
+/* Düğme */
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 50px;
+}
+.btn-primary {
+    background-color: #62109F; /* Koyu gri */
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: #333; /* Daha koyu gri */
+}
+/* Hero Resmi - Kemer Şekli */
+.hero-image-container {
+    position: relative;
+    width: 300px; /* Resim çerçevesi genişliği */
+    height: 400px; /* Resim çerçevesi yüksekliği */
+    margin: 0 auto;
+}
+.image-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 150px 150px 0 0; /* Kemer şekli için border-radius */
+    overflow: hidden; /* Resmin çerçeve dışına taşmasını engeller */
+    position: relative;
+    box-shadow: 0 10px 20px #F57799;
+}
+.image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Resmi çerçeveye sığdırır ve kesmez */
+}
+/* Kemer Şeklinin Arka Planındaki Renk Bloğu */
+.image-frame::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%; /* Renk bloğunun yüksekliği */
+    background: #F57799;
+    z-index: -1; /* Resmin arkasında kalmasını sağlar */
+}
+/* Medya Sorguları (Mobil Uyumluluk) */
+@media (min-width: 768px) {
+    .hero-section .container {
+        flex-direction: row; /* Masaüstünde yatay düzen */
+        text-align: left;
+    }
+    .hero-content {
+        flex: 1;
+        margin-right: 50px;
+        margin-bottom: 0;
+    }
+    .hero-image-container {
+        flex: 1;
+    }
+}
+/* Menü Katmanı Başlangıç Hali */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Menüyü ekranın sağında gizliyoruz */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 26, 26, 0.98); /* Koyu arka plan */
+    z-index: 1000;
+    transition: right 0.4s ease; /* Kayma efekti */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Menü Aktif Olduğunda */
+.menu-overlay.active {
+    right: 0; /* Menüyü ekrana getiriyoruz */
+}
+/* Kapatma Butonu */
+.close-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    border: 1px solid #444;
+    padding: 0 15px;
+    border-radius: 10px;
+}
+/* Menü Linkleri */
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+.overlay-content a {
+    font-size: 2rem;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 300;
+}
+/* Sosyal Medya İkonları */
+.social-icons {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.social-btn {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #807676;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* --- Masaüstü Ayarları (Varsayılan) --- */
+.desktop-menu {
+    display: flex; /* Yan yana diz */
+    gap: 30px;
+}
+
+.desktop-menu a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 700;
+    transition: opacity 0.3s;
+}
+.desktop-menu a:hover {
+    opacity: 0.7;
+}
+/* Masaüstünde mobil ikonunu gizle */
+.menu-icon {
+    display: none; 
+}
+.work-section {
+    padding: 80px 0;
+    width: 100%;
+    background: #FDC3A1;
+}
+#work .skill-tag{
+    margin-top: -40px; /* Bu değeri artırarak (örn: -40px) daha da yukarı alabilirsin */
+    margin-bottom: 50px; /* Altındaki projelerle arasını açmak için */
+    display: inline-block;
+}
+.section-tag {
+    order: -1;
+    display: inline-block;
+    padding: 8px 20px;
+    /*border: 2px solid #00a8ff; /* Mavi çerçeve */
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-bottom: 40px;
+    /*box-shadow: 4px 4px 0px #00a8ff; /* 3D efekti veren gölge */
+}
+/* Ana kapsayıcıyı (container) flex yapıyoruz */
+.work-section .container {
+    display: flex;
+    flex-direction: column; /* Öğeleri alt alta diz */
+    align-items: center;    /* Yatayda ortala */
+}
+/* "MY WORK" etiketini en üste zorla */
+.work-section .skill-tag {
+    order: 1;               /* 1. sırada görünmesini sağla */
+    margin-bottom: 20px;    /* Altındaki başlık/grid ile arasını aç */
+}
+.projects-grid {
+    display: flex;
+    flex-wrap: wrap; /* Sığmazsa aşağı kaysınlar */
+    gap: 20px;       /* Aralarındaki boşluk */
+}
+/* Proje grid yapısını etiketin altına al */
+.work-section .projects-grid {
+    order: 2;               /* 2. sırada görünmesini sağla */
+    width: 100%;            /* Tam genişlik kaplasın */
+}
+/* Eğer başlık (h2) skill-tag içindeyse zaten beraber taşınırlar. 
+   Eğer ayrıysa ona da order verebilirsin. */
+.project-card {
+    margin-bottom: 50px;
+    text-align: left;
+}
+.project-image img {
+    width: 100%;
+    border-radius: 24px;
+    display: block;
+    margin-bottom: 15px;
+}
+/* Kartın tamamını kapsayan linkin stili */
+.project-link {
+    text-decoration: none; /* Alt çizgiyi kaldırır */
+    color: inherit; /* Metin rengini ana renkten alır */
+    display: block;
+    transition: transform 0.3s ease;
+}
+/* Üzerine gelince kart hafifçe büyüsün */
+.project-link:hover {
+    transform: translateY(-5px);
+}
+.project-info {
+    padding: 15px 0;
+}
+.project-title {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+}
+.project-title1 {
+    font-size: 1.5rem;
+    margin: 0 0 10px 0;         /* Üstten ve alttan az bir boşluk */
+    text-align: center;
+    
+    color: #2d1b4e;
+}
+.view-more1#view {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #32b207;        
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: 8px;      /* Yazı ile ok işareti arası boşluk */
+    transition: transform 0.3s ease;
+}
+/* Buton Ayarı */
+.view-more {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fc7a01;         /* Senin turuncu/pembe tonun */
+    margin-top: 5px;
+}
+/* --- MOBİL AYARI --- */
+@media (max-width: 768px) {
+    .project-title1 {
+        font-size: 1.5rem;  /* Mobilde başlığı biraz küçült */
+    }
+}
+.view-more {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ac48ff; /* Mavi renk */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view-more span {
+    transition: margin-left 0.3s ease;
+}
+/* Üzerine gelince ok işareti biraz sağa kaysın */
+.project-link:hover .view-more span {
+    margin-left: 10px;
+}
+/* Masaüstü (768px ve üzeri) */
+@media (min-width: 768px) {
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 eşit sütun */
+        gap: 30px;
+    }
+    .vertical-focus {
+        grid-column: 2; /* 2. sütuna (ortaya) yerleşir */
+        margin-top: 20px;
+    }
+}
+/* Görsel Kutuları İçin Sabitlik */
+.project-image {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #2d1b4e; /*F7F6D3*/
+    margin-bottom: 15px;
+}
+/* Yatay görseller için dikdörtgen oran */
+.horizontal .project-image {
+    aspect-ratio: 16 / 9;
+}
+/* Dikey görsel için dikey dikdörtgen oran */
+.vertical-focus .project-image {
+    aspect-ratio: 3 / 4; /* Telefon ekranı oranına yakın */
+    max-width: 400px; /* Çok devasa olmaması için masaüstünde kısıtladık */
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Genel Kart Ayarı */
+.project-card.vertical-focus {
+    width: 100%;
+    grid-column: 1/-1;
+    max-width: 828px; /* Masaüstünde çok yayılmasın */
+    margin: 0 auto 30px; /* Ortala ve alttan boşluk bırak*/
+}
+
+/* Görselin içinde bulunduğu kutu */
+.dikey-kutu {
+    max-width: 888px;
+    width: 100%;
+    aspect-ratio: 888/1920;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 100px;
+}
+
+.dikey-kutu img {
+    width: 100%;
+    height: 100%; /* Oranı korur */
+    display: block;
+    object-fit: contain; /* Görselin tamamının görünmesini sağlar */
+}
+
+/* --- KÜÇÜK EKRAN (MOBİL) AYARI --- */
+@media (max-width: 768px) {
+    .project-card.vertical-focus {
+        padding: 0 15px; /* Kenarlardan çok az boşluk bırak */
+    }
+
+    .project-title {
+        font-size: 1.5rem; /* Mobilde başlığı biraz küçült */
+        text-align: center;
+    }
+
+    /* Eğer görsel mobilde çok uzun gelirse yüksekliği sınırlayabilirsin */
+    .dikey-kutu {
+        max-height: 450px; 
+        display: flex;
+        justify-content: center;
+    }
+    
+    .dikey-kutu img {
+        width: auto; /* Genişliği serbest bırak */
+        max-width: 100%; /* Ama ekranı geçmesin */
+        height: 100%; /* Kutunun boyuna uysun */
+    }
+}
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Resmi kutuya sığdırır*/
+}
+.skills-section {
+    padding: 80px 0;
+    background-color: #FB9B8F;
+}
+#contact.skills-section {
+    background-color: #FB9B8F; /* İstediğin rengin kodu (Örn: Lacivert tonu) */
+}
+#contact .skill-tag{
+    margin-top: -40px; /* Bu değeri artırarak (örn: -40px) daha da yukarı alabilirsin */
+    margin-bottom: 50px; /* Altındaki projelerle arasını açmak için */
+    display: inline-block;
+}
+#contact .skill-card{
+    background-color: #FDC3A1;
+}
+#profiency .skill-tag{
+    margin-top: -195px; /* Bu değeri artırarak (örn: -40px) daha da yukarı alabilirsin */
+    margin-bottom: 50px; /* Altındaki projelerle arasını açmak için */
+    display: inline-block;
+}
+
+.skills-levels-section {
+    padding: 80px 0;
+    position: relative;
+    background-color: #FDC3A1;
+    /*overflow: hidden;
+    text-align: center; /* Başlık ve metni ortalar */
+}
+.skill-tag {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #f56289;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    color: wheat;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.skill-tag1{
+display: inline-block;
+    padding: 8px 20px;
+    background: #F57799;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    color: wheat;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+#skills .skill-tag{
+     margin-top: -40px; /* Bu değeri artırarak (örn: -40px) daha da yukarı alabilirsin */
+    margin-bottom: 50px; /* Altındaki projelerle arasını açmak için */
+    display: inline-block;
+}
+.skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+.skills-wrapper {
+    display: flex;
+    flex-direction: row;      /* Yan yana diz */
+    flex-wrap: wrap;         /* Sığmazsa alt satıra geç (Üst üste binmeyi engeller) */
+    justify-content: center;  /* Ortala */
+    gap: 40px;                /* Kartlar arasındaki boşluk */
+    margin-top: 50px;
+}
+.skills-header {
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important; /* Tag ve Başlığı üst üste koy */
+    align-items: center !important;  
+    text-align: center;
+}
+/* "MY CORE SKILLS" etiketini en başa zorla */
+.skills-section .skill-tag {
+    order: 1 !important; /* 1. sırada görünmesini sağlar */
+    margin-bottom: 15px; /* Başlıkla arasını açar */
+}
+/* Büyük başlığı ikinci sıraya al */
+.skills-section .skills-heading {
+    order: 2 !important; /* 2. sırada görünmesini sağlar */
+}
+/* Kartların olduğu grid yapısını da bunların altına (3. sıraya) al */
+.skills-section .skills-grid {
+    order: 3 !important;
+}
+/* .skill-tag {
+    order: 1; /* İlk sırada görünmesini sağlar */
+    /*display: inline-block;
+    margin-bottom: 10px;
+} */
+.skills-heading {
+    width: 100%;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin-top: 15px; /* Başlığı kendi içinde ortalar */
+    color: #2d1b4e;
+    order: 2;
+}
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px; 
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto; /* Sayfanın ortasına hizalar */
+    padding: 20px;
+}
+.skill-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;  /* İçindekileri üst üste koy */
+    align-items: center;     /* İçindekileri ortala */
+    text-align: center;      /* Metni ortala */
+    /* background: #FFD8DF; */
+    padding: 40px 25px;
+    border-radius: 20px;
+    border: 1px solid #333;
+    box-sizing: border-box;  /* Padding genişliği bozmasın */
+}
+
+/* 1. Kutu Arka Plan */
+.skills-grid .skill-card:nth-child(1) {
+    background-color: #c1e1f9; 
+}
+/* 2. Kutu Arka Plan */
+.skills-grid .skill-card:nth-child(2) {
+    background-color: #d0bad2;
+}
+/* 3. Kutu Arka Plan */
+.skills-grid .skill-card:nth-child(3) {
+    background-color: #9bc6e7; 
+}
+/* 4. Kutu Arka Plan */
+.skills-grid .skill-card:nth-child(4) {
+    background-color: #fdffa0; 
+}
+/* 1. Kutu (UX/UI Design) */
+.skills-grid .skill-card:nth-child(1):hover {
+    box-shadow: 0 10px 20px rgb(191, 128, 197);
+}
+/* 2. Kutu (Leadership) */
+.skills-grid .skill-card:nth-child(2):hover {
+    box-shadow: 0 10px 20px rgb(250, 252, 112);
+}
+/* 3. Kutu (UX/UI Design) */
+.skills-grid .skill-card:nth-child(3):hover {
+    box-shadow: 0 10px 20px rgb(250, 252, 112);
+}
+/* 4. Kutu (Leadership) */
+.skills-grid .skill-card:nth-child(4):hover {
+    box-shadow: 0 10px 20px rgb(191, 128, 197);
+}
+.skill-icon {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+}
+.skill-icon img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+.skill-card h3 {
+    margin-bottom: 15px;
+    color: #2d1b4e;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+.skill-card p {
+    color: #000000;
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+/* About Genel Bölüm */
+.about-section {
+    background-color: #fdf1b6;
+    padding: 80px 20px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Başlığı ortalar */
+}
+/* About bölümünün ana taşıyıcısını esnek yapıyoruz */
+.about-section .container {
+    display: flex;
+    flex-direction: column; /* Öğeleri yukarıdan aşağıya diz */
+    align-items: center;    /* Her şeyi yatayda ortala */
+}
+/* "ABOUT" etiketini (section-tag) 1. sıraya zorla */
+.about-section .section-tag {
+    order: -1;              /* Diğer her şeyden önce gelmesi için negatif değer veriyoruz */
+    margin-bottom: 30px;    /* Altındaki içerikle arasını açar */
+}
+/* İçerik Kutusu (Mobilde varsayılan: Alt Alta) */
+.about-content {
+    order: 1;               /* Etiketten sonra gelmesini sağlar */
+    display: flex;          /* Eğer resim ve yazı yan yanaysa bunu korur */
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+}
+#about .skill-tag{
+    margin-top: -40px; /* Bu değeri artırarak (örn: -40px) daha da yukarı alabilirsin */
+    margin-bottom: 50px; /* Altındaki projelerle arasını açmak için */
+    display: inline-block;
+}
+/* Yuvarlak Fotoğraf Çerçevesi */
+.profile-circle {
+    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+    border-radius: 40%;
+    overflow: hidden;
+    border: 2px solid #f29955a4; /* Mavi çerçeve */
+    box-shadow: 0 0 20px rgb(249, 144, 70);
+    
+}
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+/* Hakkımda Metni */
+.about-text {
+    flex: 1;
+    text-align: left;
+    color: #36005f;
+}
+.about-text h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #f4a91f;
+}
+/* Zaman Çizelgesi (Timeline) Stilleri */
+.timeline {
+    margin-top: 30px;
+    border-left: 2px solid #9fff5f;
+    padding-left: 20px;
+}
+.timeline-item {
+    margin-bottom: 20px;
+    position: relative;
+}
+/* Yılın yanındaki küçük nokta */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -27px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background-color: #fbaa20;
+    border-radius: 50%;
+}
+.year {
+    font-weight: bold;
+    display: block;
+    font-size: 1.2rem;
+    color: #fd8e07; /* Sarı renk (görsellerle uyumlu) */
+}
+/* .skills-levels-section {
+    padding: 60px 0;
+    background-color: #FEF3E2; /* Arka planına göre ayarla */
+   /* width: 100%;
+} */
+.skills-levels-section .container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* Her şeyi yatayda ortalar */
+    text-align: center !important;
+    gap: 30px;
+    width: 100%;
+}
+/* Header alanını (PROFICIENCY yazan kısım) en üste sabitle */
+.skills-levels-section .skills-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    order: 1 !important; /* 1. sırada olmasını garanti eder */
+    width: 100%;
+    margin-bottom: 40px;
+}
+/* PROFICIENCY etiketi */
+.skills-levels-section .skill-tag {
+    margin-top: -40px; /* Bu değeri artırarak (örn: -40px) daha da yukarı alabilirsin */
+    margin-bottom: 50px; /* Altındaki projelerle arasını açmak için */
+    display: inline-block;
+}
+/* Barların olduğu ızgara yapısını 2. sıraya al */
+.skills-levels-section .levels-grid {
+    order: 2 !important; 
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr); /* Masaüstünde yan yana 2 tane */
+    gap: 30px 60px;
+    width: 100%;
+}
+/* --- MOBİL GÖRÜNÜM (Küçük Ekran) --- */
+@media (max-width: 768px) {
+    .skills-levels-section .levels-grid {
+        grid-template-columns: 1fr !important; /* Mobilde barlar alt alta düşer */
+        gap: 20px;
+    }
+
+    .skills-levels-section .skills-header {
+        margin-bottom: 30px;
+    }
+}
+.levels-grid {
+    display: grid;
+    /* Masaüstünde 2 eşit sütun oluşturur (1fr 1fr) */
+    grid-template-columns: repeat(2, 1fr); 
+    /* Sütunlar arası 60px, satırlar arası 40px boşluk bırakır */
+    gap: 40px 60px; 
+    width: 100%;
+    margin-top: 40px;
+}
+.level-item {
+    width: 100%;
+}
+.level-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+ /* Kendi fontunla değiştir */
+    font-weight: bold;
+    color: #780000;
+}
+@media (max-width: 768px) {
+    /* 1. Tüm bölümün kapsayıcısını dikey dizilime zorla */
+    #skills .container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    /* 2. Başlık grubunu (Tag ve H2) dikey yap */
+    #skills .skills-header {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        order: 1 !important; /* Bu grubu en başa al */
+    }
+    /* 3. Etiketi (MY CORE SKILLS) en başa zorla */
+    #skills .skill-tag {
+        order: -1 !important; /* Negatif değer her zaman en üste fırlatır */
+        margin-bottom: 15px !important;
+        display: block !important;
+    }
+    /* 4. Büyük başlığı etiketin altına al */
+    #skills .skills-heading {
+        order: 1 !important;
+        font-size: 1.6rem !important;
+        margin-bottom: 30px !important;
+    }
+    /* 5. Kartları en alta (3. sıraya) it */
+    #skills .skills-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        order: 2 !important;
+        width: 100% !important;
+        gap: 20px !important;
+    }
+}
+@media (max-width: 768px) {
+    .levels-grid {
+        grid-template-columns: 1fr; /* Mobilde barlar alt alta dizilir */
+        gap: 25px; /* Mobilde boşluğu biraz daraltalım */
+    }
+}
+
+.level-item {
+    width: 100%; /* Her bar kendi sütununu tam kaplasın */
+}
+.progress-line {
+    height: 8px;
+    width: 100%;
+    background: #62109F; /* Barın boş kısmının rengi */
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.progress-line span {
+    height: 100%;
+    background: rgb(249, 144, 70); /* Barın doluluk rengi (Vurgu rengin neyse o yap) */
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+    /* Kayma efekti ekleyelim */
+    transition: width 1.5s ease-in-out;
+}
+.about-image {
+    display: flex;
+    align-self: center; /* Sadece bu kutuyu (resmi) bulunduğu satırın dikey ortasına çeker */
+}
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr; /* Kartlar alt alta düşer */
+    }
+    
+    .skills-header {
+        padding: 0 20px; /* Kenarlara yapışmasın */
+    }
+}
+
+/* --- MASAÜSTÜ GÖRÜNÜMÜ --- */
+@media (min-width: 992px) {
+    .about-content {
+        flex-direction: row; /* Fotoğraf ve metni yan yana getirir */
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .about-image {
+        flex: 0 0 350px; /* Fotoğrafın genişliğini sabitler */
+        display: flex;
+        justify-content: center;
+    }
+
+    .profile-circle {
+        width: 300px;
+        height: 300px;
+    }
+}
+/* --- Mobil Ayarları (Ekran 768px'den küçükse) --- */
+@media (max-width: 768px) {
+    /* Bilgisayar menüsünü gizle */
+    .desktop-menu {
+        display: none;
+    }
+    /* Mobil hamburger ikonunu göster */
+    .menu-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 18px;
+        cursor: pointer;
+    }
+    .menu-icon span {
+        height: 2px;
+        width: 100%;
+        background-color: white;
+        border-radius: 5px;
+    }
+}
+@media (min-width: 768px) {
+    /* Genel Konteyner Düzeni */
+    .work-section .container, 
+    .skills-section .container {
+        display: flex;
+        flex-direction: column; /* İçerikleri yukarıdan aşağı sıralar */
+        align-items: center;    /* Başlıkları yatayda ortalar */
+        padding: 60px 20px;
+        width: 100%;
+    }
+    /* Başlık Etiketleri (Tag) */
+    .section-tag, .skill-tag {
+        order: 1;               /* Her zaman en üstte görünmesini sağlar */
+        margin-bottom: 30px;
+        align-self: center;     /* Masaüstünde ortada durması için */
+    }
+    /* My Work Kart Yapısı */
+    .project-card {
+        order: 2;
+        width: 100%;
+        max-width: 900px;       /* Çok yayılmaması için sınırlandırdık */
+    }
+    /* My Core Skills Başlık ve Kartları */
+    .skills-heading {
+    font-size: 1.5rem;  /* Başlık mobilde çok büyük kalmasın */
+        padding: 0 10px;
+    }
+    .skill-card {
+        order: 3;
+        width: 100%;
+        max-width: 800px;
+    }
+}
+/* Genel Galeri Alanı */
+.detail-gallery {
+    padding: 50px 0;
+}
+.detail-footer {
+    text-align: center; /* Metni yatayda ortalar */
+    padding: 40px 0;    /* Sayfanın en altına yapışmaması için boşluk bırakır */
+    width: 100%;        /* Tüm genişliği kapladığından emin olur */
+    font-size: 1.2rem;
+}
+.detail-footer p{
+    font-weight: 700;
+}
+/* Satır Yapısı */
+.gallery-row {
+    display: flex;
+    flex-wrap: wrap;      /* Mobilde görsellerin alt alta kayabilmesi için */
+    gap: 120px;            /* Hem yan yana hem alt alta 20px boşluk bırakır */
+    margin-bottom: 70px;  /* İki satır (row) arasındaki boşluk */
+    justify-content: center;
+    /* object-fit: cover; */
+    /* padding-top: 70px; */
+    
+}
+/* Her 2. satırı ters çevir (Görsel sağa, metin sola) */
+.gallery-row:nth-child(even) {
+    flex-direction: row-reverse;
+}
+/* Görsel Kutusu */
+.gallery-image {
+    display: flex;
+    flex-direction: column; /* Görselleri alt alta dizer */
+    gap: 15px; /* Görseller arasına biraz boşluk ekler */
+    width: 100%; /* Kapsayıcının genişliğini kullanır */
+    max-width: 800px; /* Çok devasa olmaması için üst sınır koyabilirsin (isteğe bağlı) */
+    margin: 0 auto; /* Eğer genişlik sınırlıysa ortalar */
+}
+.gallery-image img {
+    width: 100%; /* Div'in tüm genişliğini kapla */
+    height: auto; /* Oranını koru */
+    display: block; /* Altındaki boşluğu siler */
+}
+.gallery-image img:hover {
+    transform: scale(1.02);
+}
+.gallery-info {
+    display: flex;           /* Esnek kutu yapısı */
+    flex-direction: column;  /* Başlık ve paragrafı alt alta dizer */
+    align-items: center;     /* İçerikleri yatayda ortalar */
+    justify-content: center; /* İçerikleri dikeyde ortalar (eğer yükseklik varsa) */
+    text-align: center;      /* Metnin kendi satırlarını ortalar */
+    max-width: 800px;        /* Yazının çok yayılmaması için ideal genişlik */
+    margin: 0 auto;          /* Kutunun kendisini sayfanın ortasına çeker */
+    padding: 40px 20px;      /* Etrafına nefes aldıracak boşluk */
+}
+.gallery-info h3 {
+    margin-bottom: 15px;     /* Başlık ile paragraf arası boşluk */
+    font-weight: 700px;
+    margin-top: 10px;
+}
+.gallery-info p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #36005f;
+    line-height: 1.8;
+}
+.gallery-info li{
+    margin-top: 5px;
+    font-size: 1.1rem;
+     font-family: "Fira Sans", sans-serif;
+}
+.text-gallery h3{
+    text-align: center;
+    font-size: 40px;
+
+}
+/* Görsel Konteynırı */
+.gallery-image {
+    flex: 1 1 200px;       /* Minimum 200px olsun, yer varsa büyüsün */
+    max-width: 300px;      /* Çok devasa olmasını engelle */
+    transition: transform 0.3s ease;
+} 
+
+/* Resmin Kendisi */
+.gallery-image img {
+    width: 100%;           /* Konteynırına tam sığsın */
+    height: auto;          /* Oranı bozulmasın */
+    /* 3px solid #02063e; /* Senin genel stilinle uyum için */
+    /*shadow: 8px 8px 0px #000; /* Çizgi roman tarzı gölge */
+    display: block;
+}
+/* Sadece 'galeri-buyuk' sınıfına sahip konteynır için */
+.gallery-image.galeri-buyuk {
+    flex: 2 1 700px;    /* Diğerlerinden 2 kat daha fazla büyüme önceliği ver */
+    max-width: 900px;   /* Maksimum genişliği diğerlerinin 2 katı (300px idi) */
+}
+
+/* --- Mobil Uyumluluk --- */
+@media (max-width: 768px) {
+    .gallery-image.galeri-buyuk {
+        max-width: 100%; /* Mobilde ekranı tam kaplasın */
+        flex: 1 1 100%;
+    }
+}
+
+/* Bilgi Metni Ayarı */
+.gallery-info {
+    text-align: center;
+    max-width: 800px;
+    margin: 20px auto 40px;
+    padding: 20px;
+    font-family: "DynaPuff", system-ui;
+    /* background: #fff; */
+}
+
+/* --- Mobil Uyumluluk --- */
+@media (max-width: 768px) {
+    .gallery-image {
+        flex: 1 1 140px;   /* Mobilde görselleri biraz daha küçült (yan yana 2 tane sığar) */
+        max-width: 45%;    /* Mobilde yan yana 2 tane durması için */
+    }
+    
+    .gallery-row {
+        gap: 10px;         /* Mobilde boşluğu daralt */
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-image {
+        max-width: 100%;   /* Çok küçük ekranlarda (küçük telefonlar) tek tek alt alta */
+        flex: 1 1 100%;
+    }
+}
+/* Butonların kapsayıcısı */
+.socials {
+    display: flex;
+    justify-content: center; /* Ortalamak için (Sola almak istersen flex-start yap) */
+    gap: 15px;               /* Butonlar arası boşluk */
+    margin-top: 20px;
+}
+/* Sosyal medya butonlarının genel stili */
+.social-btn {
+    background-color: #f5f190;  /* Buton arka planı */
+    text-decoration: none;
+    border: none;
+    width: 45px;             /* Buton genişliği */
+    height: 45px;            /* Buton yüksekliği */
+    border-radius: 50%;      /* Tam yuvarlak yapmak için */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease; /* Hareketin yumuşak olması için */
+}
+/* İkonların boyutu ve rengi */
+.social-btn i {
+    font-size: 25px;
+    color: #000;
+}
+/* --- HOVER (Üzerine Gelince) ETKİSİ --- */
+.social-btn:hover {
+    transform: translateY(-5px); /* Hafifçe yukarı kalkar */
+    background-color: #66cd47;   /* Senin temandaki mavi tonu (İstediğinle değiştir) */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.social-btn:hover i {
+    color: #000000; /* Üzerine gelince ikon beyaz olsun */
+}
+/* --- MOBİL UYUMLULUK AYARLARI (768px altı) --- */
+@media (max-width: 768px) {
+    
+    /* 1. Genel Konteyner Ayarı */
+    .container {
+        padding: 0 15px; /* Kenar boşluklarını biraz daraltalım */
+    }
+
+    /* 2. Skills (Yetenekler) Bölümü */
+    .skills-grid {
+        grid-template-columns: 1fr; /* Kartları yan yana değil, alt alta diz */
+    }
+
+    .skills-heading {
+        font-size: 1.8rem; /* Mobilde başlığı biraz küçültelim */
+        line-height: 1.3;
+    }
+
+    /* 3. About (Hakkımda) Bölümü */
+    .about-content {
+        flex-direction: column; /* Resim ve yazıyı alt alta getir */
+        text-align: center;     /* Metinleri ortala */
+        gap: 30px;
+    }
+
+    .about-text {
+        text-align: left; /* Zaman çizelgesi okunabilirliği için metni sola yaslı tutabiliriz */
+    }
+
+    .profile-circle {
+        width: 200px;  /* Mobilde resmi biraz küçültelim */
+        height: 200px;
+        margin: 0 auto; /* Resmi ortala */
+    }
+
+    /* 4. Timeline (Zaman Çizelgesi) */
+    .timeline {
+        margin-top: 20px;
+        padding-left: 15px; /* Çizginin sol boşluğunu ayarla */
+    }
+
+    /* 5. Contact (İletişim) Bölümü */
+    .skills-section .skill-card {
+        width: 100%; /* Kartın ekranı kaplamasını sağla */
+        max-width: none;
+    }
+}
+
+/* --- Ekstra Küçük Ekranlar (480px altı) --- */
+@media (max-width: 480px) {
+    .skills-heading {
+        font-size: 1.5rem;
+    }
+    
+    .year {
+        font-size: 1rem;
+    }
+}
+/* MOBİL UYUM: Telefondan bakınca hepsi alt alta düzgünce sıralanır */
+@media (max-width: 992px) {
+    .gallery-row, .gallery-row:nth-child(even) {
+        flex-direction: column; /* Mobilde terslik olmasın, hep alt alta */
+        gap: 30px;
+        text-align: center;
+    }
+    .gallery-row {
+        margin-bottom: 60px;
+    }
+}
+@media (max-width: 768px) {
+    /* 1. Contact bölümünün ana taşıyıcısını dikey hizalıyoruz */
+    section.skills-section:last-of-type .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    /* 2. "Contact" Etiketi (skill-tag) -> EN ÜSTTE */
+    section.skills-section:last-of-type .skill-tag {
+        order: 1; 
+        margin-bottom: 15px;
+    }
+    /* 3. "Let's Get in Touch" Başlığı (skills-heading) -> ORTADA */
+    section.skills-section:last-of-type .skills-heading {
+        order: 2;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        width: 100%;
+    }
+    /* 4. Mail Kutusu (skill-card) -> EN ALTTA */
+    section.skills-section:last-of-type .skill-card {
+        order: 3;
+        width: 100%;
+        max-width: 320px; /* Çok yayılmaması için */
+        padding: 20px;
+        display: flex;
+        flex-direction: column; /* İkon ve yazı alt alta */
+        align-items: center;
+        border-radius: 20px;
+    }
+    /* Kutu içindeki ikon ayarı */
+    section.skills-section:last-of-type .skill-icon img {
+        margin-bottom: 10px;
+        width: 40px;
+        height: 40px;
+    }
+}
+@media (max-width: 768px) {
+    /* 1. Skills bölümünün konteynerini dikey dizilime hazırlıyoruz */
+    section.skills-section:first-of-type .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    /* 2. "MY CORE SKILLS" Etiketi (skill-tag) -> EN ÜSTTE (1. Sıra) */
+    section.skills-section:first-of-type .skill-tag {
+        order: 1;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+    /* 3. "Blending UX..." Başlığı (skills-heading) -> ORTADA (2. Sıra) */
+    section.skills-section:first-of-type .skills-heading {
+        order: 2;
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+        line-height: 1.3;
+        width: 100%;
+        max-width: 350px; /* Mobilde çok yayılmaması için */
+    }
+    /* 4. Kutuların Olduğu Grid (skills-grid) -> EN ALTTA (3. Sıra) */
+    section.skills-section:first-of-type .skills-grid {
+        order: 3;
+        display: flex;       /* Grid yerine Flex ile alt alta daha kolay dizilir */
+        flex-direction: column;
+        gap: 20px;           /* Kutular arası boşluk */
+        width: 100%;
+    }
+    /* Kutuların (skill-card) mobildeki genişlik ayarı */
+    section.skills-section:first-of-type .skill-card {
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto;      /* Kartları ortala */
+        padding: 25px;
+    }
+}
