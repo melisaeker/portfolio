@@ -1,303 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="app.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Melisa Eker | Portfolio</title>
-</head>
-<body>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity Web Player | CandyCrushSaga</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-logo-title-footer"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">CandyCrushSaga</div>
+      </div>
+    </div>
+    <script>
+      var canvas = document.querySelector("#unity-canvas");
 
-    <header>
-        <!-- <div class="container">
-            <!-- <div class="logo">
-                <img src="logo.png" alt="Logo"> </div> -->
-           <!--- <div class="menu-icon">
-                <span></span>
-                <span></span>
-            </div>
-        </div> -->
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        var warningBanner = document.querySelector("#unity-warning");
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
 
-    <div class="container">
-        <div class="logo">
-            <a href="#">MELİSA EKER</a>
-        </div>
-        <nav class="desktop-menu">
-            <a href="#home">Home</a>
-            <a href="#work">My Work</a>
-            <a href="#skills">Technical Skills</a>
-            <a href="#about">About</a>
-            <a href="#profiency">Profiency</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <div class="menu-icon" id="openMenu">
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-<div class="menu-overlay" id="menuOverlay">
-    <div class="close-icon" id="closeMenu">
-        <span>&times;</span>
-    </div>
-    <nav class="overlay-content">
-        <a href="#home">Home</a>
-        <a href="#work">My Work</a>
-        <a href="#skills">My Core Skills</a>
-        <a href="#about">About</a>
-        <a href="#profiency">Profiency</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</div>
-</header>
-<main>
-    <section class="hero-section" id="home">
-    <div class="shapes-container">
-        <div class="shape circle"></div>
-        <div class="shape square"></div>
-        <div class="shape triangle"></div>
-        <div class="shape circle small"></div>
-                <div class="shape circle small"></div>
-        <div class="shape square small"></div>
-    </div>
-        <div class="container hero-flex">
-             <div class="hero-content">
-                <h1 class="hero-title">Hello!</h1>
-                 <h1 class="hero-title">I'm Melisa Eker </h1>
-                 <h1 class="hero-title"> a 2D Artist | UI-UX Designer</h1>
-                <p class="hero-text">I live in Türkiye. I create user-focused content and I enjoy doing it because my hobby has become my profession.</p>
-                <a href="#work" class="btn btn-primary">My Work</a>
-            </div>
-            <div class="hero-image-container">
-                <div class="image-frame">
-                    <img src="IMG_3022.JPG" alt="Profil Resmi"> 
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-<section id="work" class="work-section">
-    <div class="container">
-        <div class="skill-tag">MY WORK</div>
-        <div class="projects-grid">
-              <div class="project-card horizontal">
-                <a href="project1.html" class="project-link">
-                    <div class="project-image"><img src="FİNAL UI.png" alt="H1"></div>
-                    <h2 class="project-title">Vertigo Games Polygun Arena  UI-UX Designer Junior 2D Case Study</h2>
-                    
-                </a>
-            </div>
-            <div class="project-card horizontal">
-                <a href="project2.html" class="project-link">
-                    <div class="project-image"><img src="İLK AANA EKRAN-1.png" alt="H2"></div>
-                    <h2 class="project-title">Run to Live – 2D Game Design & UI/UX Case Study</h2>
-                </a>
-            </div>
-            <div class="project-card horizontal">
-                <a href="project3.html" class="project-link">
-                    <div class="project-image"><img src="ANA EKRAN DEFAULT.png" alt="H3"></div>
-                    <h2 class="project-title">Gates Jam PC Game - UI/UX Design </h2>
-                </a>
-            </div>
-           <div class="project-card vertical-focus">
-                <a href="project4.html" class="project-link">
-             <div class="project-image dikey-kutu">
-            <video autoplay loop muted playsinline poster="phone-final-thumbnail.png">
-                <source src="copy_143FBE82-09A1-4A25-BD10-CF02C1D08575.MOV" type="video/mp4">
-         </video>
-        </div>
-        <h2 class="project-title1">Gamified UI/UX Portfolio Experience<br> A playable portfolio inspired by match-3 game mechanics</h2>
-    </a>
-    
-</div>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="skills" class="skills-section">
-    <div class="container">
-        <div class="skills-header">
-            <div class="skill-tag">Technical Skills </div>
-            <h2 class="skills-heading">BLENDING UX, UI, RESEARCH, AND A BIR OF INTERDISCIPLINARY ART</h2>
-        </div>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <!-- <div class="skill-icon"><img src="ux-icon.png" alt="UX"></div> -->
-                <h3>UX/UI & Interaction Design</h3>
-                <p>
-                Creates and designs intuitive, engaging, and accessible experiences across games.</p>
-            </div>
-            <div class="skill-card">
-                <!-- <div class="skill-icon"><img src="ux-icon.png" alt="UX"></div> -->
-                <h3>Leadership & Collaboration</h3>
-                <p>Mentoring designers at the cartoon magazine, organizing workshops, and bringing together teams from different departments to enhance creativity and impact.</p>
-            </div>
-            <div class="skill-card">
-                <!-- <div class="skill-icon"><img src="ux-icon.png" alt="UX"></div> -->
-                <h3>Software knowledge</h3>
-                <p>Familiar and experienced with Adobe Creative Cloud, Figma, and ProCreate programs.</p>
-            </div>
-            <div class="skill-card">
-                <!-- <div class="skill-icon"><img src="ux-icon.png" alt="UX"></div> -->
-                <h3>Multitasking skills</h3>
-                <p>Flexible, positive attitude, ability to prioritize, handle multiple tasks and meet deadlines. Excellent communication and organizational skills.</p>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="about" class="about-section">
-    <div class="container">
-        <div class="skill-tag">ABOUT</div>
-        <div class="about-content">
-            <div class="about-image">
-                <div class="profile-circle">
-                    <img src="melooo.jpeg" alt="Profil">
-                </div>
-            </div>
-            <div class="about-text">
-                     <h3>Get to know me</h3>
-                        <p>I am a colorful individual who graduated from the Art Education department specializing in sculpture, and I love to create and have fun while creating. I am passionate about creating intuitive and meaningful experiences. <br> 
-                        <h3>My way of working</h3>
-                        <p>I bring adaptability and creativity to every challenge, using core design principles to turn complex problems into clear, engaging solutions. Passionate about growth, I stay curious and always up to date with tools and trends, thriving at the intersection of user needs, product strategy, and creativity.</p>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <span class="year">January 2026 – March 2026</span>
-                        <h3>Sculptor Assistant</h3>
-                       <p>Contributed to the production of sculptures and scale models for the aerospace and defense industry, supporting both conceptual development and hands-on fabrication processes.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="year">April 2025 - present</span>
-                        <h3>Founder | Editor-in-Chief of Mıymıntı Magazine</h3>
-                        <p>As a freelance artist, I work as the editor-in-chief and cartoonist of my own cartoon magazine. I manage my team; I handle the design, content, and editing processes of the magazine.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="year"> August 2023 – February 2024</span>
-                        <h3>Art Assistant | Artesanía Nazarí (Erasmus+) Internship
-                        Nazari Art | Granada, Spain</h3>
-                        <p>I produced detailed reproductions of artworks from the Alhambra Palace, specializing particularly in traditional Nazari art. Through the Erasmus+ program, I gained hands-on experience and contributed to the preservation and reinterpretation of historical crafts.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="profiency" class="skills-levels-section">
-    <div class="container">
-        <div class="skill-tag1">Profiency</div>
-        <div class="proficiency-intro">
-            <p class="hero-text1">
-                I am a multidisciplinary artist working at the intersection of art and design, with a growing focus on UI/UX. Blending my background in sculpture, illustration, and storytelling with digital design, I create user-centered experiences that are both functional and expressive. Alongside my practice, I organize and lead creative workshops, fostering collaborative production and shared artistic exploration.
-            </p>
-        </div>
-        <div class="about-content">
-            <div class="about-image">
-                <div class="profile-circle">
-                    <img src="IMG_3025.JPG" alt="Profil">
-                </div>
-            </div>
-        <div class="levels-grid">
-            <div class="level-item">
-                <div class="level-info">
-                    <span>UI</span>
-                    <span>80%</span>
-                </div>
-                <div class="progress-line" data-level="80%">
-                    <span style="width: 80%;"></span>
-                </div>
-            </div>
-            <div class="level-item">
-                <div class="level-info">
-                    <span>UX</span>
-                    <span>70%</span>
-                </div>
-                <div class="progress-line" data-level="70%">
-                    <span style="width: 70%;"></span>
-                </div>
-            </div>
-            <div class="level-item">
-                <div class="level-info">
-                    <span>AI Tools</span>
-                    <span>80%</span>
-                </div>
-                <div class="progress-line" data-level="80%">
-                    <span style="width: 80%;"></span>
-                </div>
-            </div>
-            <div class="level-item">
-                <div class="level-info">
-                    <span>Leadership</span>
-                    <span>90%</span>
-                </div>
-                <div class="progress-line" data-level="90%">
-                    <span style="width: 90%;"></span>
-                </div>
-            </div>
-            <div class="level-item">
-                <div class="level-info">
-                    <span>Interdisciplinary artist</span>
-                    <span>90%</span>
-                </div>
-                <div class="progress-line" data-level="90%">
-                    <span style="width: 90%;"></span>
-                </div>
-            </div>
-            <div class="level-item">
-                <div class="level-info">
-                    <span>Cartoonist</span>
-                    <span>90%</span>
-                </div>
-                <div class="progress-line" data-level="90%">
-                    <span style="width: 90%;"></span>
-                </div>
-            </div>
-            <div class="level-item">
-                <div class="level-info">
-                    <span>Organization</span>
-                    <span>70%</span>
-                </div>
-                <div class="progress-line" data-level="70%">
-                    <span style="width: 70%;"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="contact" class="skills-section">
-    <div class="container">
-        <div class="skill-tag">Contact</div>
-        <!-- <h2 class="skills-heading">Let's Get in Touch</h2> -->
-        <div class="skill-card">
-            <div class="skill-icon">
-                <img src="circle.png"UX" width="50px" height="50px">
-            </div>
-            <h3>Let's Contact Me</h3>
-            <p>melisaeker6@gmail.com</p>
-           <div class="socials">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=melisaeker6@gmail.com" target="_blank">
-                    <button class="social-btn">
-                     <i class="fa-solid fa-envelope" style="color: #000;"></i>
-                    </button>
-                </a>
-                <a href="https://www.instagram.com/michelanmelo0/" target="_blank">
-                    <button class="social-btn">
-                     <i class="fa-brands fa-square-instagram" style="color: #000;"></i>
-                    </button>
-                </a>
-                <a href="https://www.linkedin.com/in/melisa-eker-49591b266/" target="_blank">
-                    <button class="social-btn">
-                     <i class="fa-brands fa-linkedin" style="color: #000;"></i>
-                    </button>
-                </a>
-                <a href="https://www.behance.net/melisaeker0" target="_blank">
-                    <button class="social-btn">
-                     <i class="fa-brands fa-square-behance" style="color: #000;"></i>
-                    </button>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-</main>
-<script src="app.js"></script>
-</body>
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/Build.loader.js";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/Build.data.br",
+        frameworkUrl: buildUrl + "/Build.framework.js.br",
+        codeUrl: buildUrl + "/Build.wasm.br",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "CandyCrushSaga",
+        productVersion: "1.0",
+        showBanner: unityShowBanner,
+        // errorHandler: function(err, url, line) {
+        //    alert("error " + err + " occurred at line " + line);
+        //    // Return 'true' if you handled this error and don't want Unity
+        //    // to process it further, 'false' otherwise.
+        //    return true;
+        // },
+      };
+
+      // By default, Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
+      // If you would like all file writes inside Unity Application.persistentDataPath
+      // directory to automatically persist so that the contents are remembered when
+      // the user revisits the site the next time, uncomment the following line:
+      // config.autoSyncPersistentDataPath = true;
+      // This autosyncing is currently not the default behavior to avoid regressing
+      // existing user projects that might rely on the earlier manual
+      // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
+      // expected to change.
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        document.querySelector("#unity-container").className = "unity-mobile";
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
+      }
+
+      document.querySelector("#unity-loading-bar").style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+              }).then((unityInstance) => {
+                document.querySelector("#unity-loading-bar").style.display = "none";
+                document.querySelector("#unity-fullscreen-button").onclick = () => {
+                  unityInstance.SetFullscreen(1);
+                };
+
+              }).catch((message) => {
+                alert(message);
+              });
+            };
+
+      document.body.appendChild(script);
+
+    </script>
+  </body>
 </html>
