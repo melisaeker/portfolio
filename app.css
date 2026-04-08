@@ -1354,3 +1354,58 @@ display: inline-block;
         padding: 25px;
     }
 }
+/* Masaüstü için tam ekran ayarları */
+@media (min-width: 1024px) {
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden; /* Sayfanın genel kaydırma çubuğunu gizler */
+    }
+
+    .project-card.vertical-focus {
+        display: flex;
+        flex-direction: row; /* Yan yana dizilim */
+        align-items: center;
+        justify-content: center;
+        width: 100vw;  /* Ekran genişliği */
+        height: 100vh; /* Ekran yüksekliği */
+        max-width: none; /* Genişlik sınırını kaldırıyoruz */
+        margin: 0;
+        background-color: #000; /* Boş kalan yerler için şık bir siyah arka plan */
+    }
+
+    .project-image.dikey-kutu {
+        height: 90vh; /* Videoyu ekran yüksekliğinin %90'ına sabitler */
+        display: flex;
+        align-items: center;
+    }
+
+    .project-image.dikey-kutu video {
+        height: 100%; /* Kapsayıcı yüksekliğine uyar */
+        width: auto;   /* Oranı bozmamak için genişliği otomatik bırakır */
+        max-height: 100%;
+        border-radius: 20px;
+    }
+
+    .project-title1 {
+        flex: 1;
+        color: white; /* Siyah arka planda görünmesi için */
+        padding: 50px;
+        font-size: 2.5rem; /* Büyük ekranlarda daha okunaklı */
+        text-align: left;
+    }
+}
+
+/* Mobil için mevcut düzeni koruyoruz (Mobilde kaydırma genellikle istenir) */
+@media (max-width: 1023px) {
+    .project-card.vertical-focus {
+        display: block;
+        width: 100%;
+    }
+    
+    .project-image.dikey-kutu video {
+        width: 100%;
+        height: auto;
+    }
+}
