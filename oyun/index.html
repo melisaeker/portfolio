@@ -6,30 +6,6 @@
     <title>Unity Web Player | CandyCrushSaga</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden; /* Kaydırmayı engeller */
-    background-color: #000;
-  }
-  #unity-container {
-    width: 100% !important;
-    height: 100% !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  #unity-canvas {
-    max-width: 100vw;
-    max-height: 100vh;
-    object-fit: contain;
-  }
-  /* Alttaki logoyu ve barı gizlemek istersen (isteğe bağlı) */
-  #unity-footer { display: none; } 
-</style>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -128,8 +104,8 @@
 
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-       canvas.style.width = "auto"; 
-  canvas.style.height = "100vh"; 
+        canvas.style.width = "828px";
+        canvas.style.height = "1792px";
       }
 
       document.querySelector("#unity-loading-bar").style.display = "block";
