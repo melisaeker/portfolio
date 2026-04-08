@@ -1354,3 +1354,33 @@ display: inline-block;
         padding: 25px;
     }
 }
+@media (min-width: 768px) {
+    .project-card.vertical-focus {
+        max-width: 800px; /* Geniş ekranlarda daha yayvan bir görünüm için */
+        display: flex; /* İçeriği yan yana getirir */
+        align-items: center;
+    }
+
+    .project-image.dikey-kutu {
+        flex: 1; /* Videonun yarı alanı kaplamasını sağlar */
+        padding: 10px;
+    }
+
+    .project-title1 {
+        flex: 1; /* Metnin diğer yarıyı kaplamasını sağlar */
+        text-align: left; /* Metni sola yaslar */
+        font-size: 1.5rem;
+    }
+}
+
+/* Küçük Telefonlar (480px'den dar ekranlar) */
+@media (max-width: 480px) {
+    .project-title1 {
+        font-size: 1rem; /* Mobilde metni biraz küçültür */
+        padding: 10px;
+    }
+    
+    .project-card.vertical-focus {
+        margin: 10px; /* Kenarlardan boşluk bırakır */
+    }
+}
