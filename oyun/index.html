@@ -6,34 +6,29 @@
     <title>Unity Web Player | CandyCrushSaga</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <style>
-    body, html {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden; /* Kaydırma çubuğunu yok eder */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #000; /* Kenarlarda kalan boşluklar için */
-    }
-
-    #unity-canvas {
-        /* Genişlik ve yüksekliği ekranın boyutlarına göre sınırla */
-        max-width: 100vw;
-        max-height: 100vh;
-        
-        /* En-boy oranını (828/1792) koruyarak ekrana sığdır */
-        width: auto !important;
-        height: auto !important;
-        
-        /* Alternatif olarak, dikeyde tam sığması için: */
-        height: 100vh !important;
-        width: auto !important;
-
-        display: block;
-    }
+   <style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Kaydırmayı engeller */
+    background-color: #000;
+  }
+  #unity-container {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #unity-canvas {
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+  }
+  /* Alttaki logoyu ve barı gizlemek istersen (isteğe bağlı) */
+  #unity-footer { display: none; } 
 </style>
   </head>
   <body>
@@ -132,11 +127,10 @@
 
 
       } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        canvas.style.width = "828px";
-        canvas.style.height = "1792px";
-      }
-
+  // Sabit ölçü yerine ekran yüksekliğine sığdırıyoruz
+  canvas.style.width = "auto"; 
+  canvas.style.height = "100vh"; 
+}
       document.querySelector("#unity-loading-bar").style.display = "block";
 
       var script = document.createElement("script");
