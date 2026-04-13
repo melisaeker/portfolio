@@ -9,37 +9,30 @@
 
     <style>
   /* Oyunun içinde duracağı kapsayıcı */
-  .game-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.05); /* Çok hafif bir arka plan */
-    border-radius: 15px;
-    margin: 20px auto;
-    max-width: 1000px;
-  }
+  #unity-container { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Ekran yüksekliğine göre ortalar */
+  padding: 20px 0;
+}
 
-  /* Unity'nin içine yerleştiği canvas */
-  #unity-canvas {
-    width: 960px; /* Bilgisayar için ideal genişlik */
-    height: 600px; /* Bilgisayar için ideal yükseklik */
-    background: #231f20;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    cursor: default;
-    justify-content: center; /* Yatayda ortalar */
-    align-items: center;    /* Dikeyde ortalar */
-  }
+/* İşte o meşhur auto ve vh ayarı */
+#unity-canvas {
+  width: auto !important;    /* Genişlik otomatik, oran bozulmaz */
+  height: 85vh !important;   /* Yükseklik ekranın %85'i kadar, taşma yapmaz */
+  max-width: 100%;           /* Mobilde ekrandan dışarı taşmaz */
+  border-radius: 15px;       /* UI/UX dokunuşu: Köşeleri yuvarladık */
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4); /* Derinlik hissi verir */
+}
 
-  /* Alt kısımdaki uyarı yazısı için */
-  .game-footer {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #888;
-    font-family: 'Segoe UI', sans-serif;
-  }
+/* Alt kısımdaki yazı ve butonların oyunun altında düzgün durması için */
+#unity-footer {
+  width: auto;
+  margin-top: 10px;
+  color: white;
+}
 </style>
   </head>
   <body>
@@ -137,12 +130,11 @@
         // config.devicePixelRatio = 1;
 
 
-      } else {
-        // Masaüstü stili: Bilgisayar ekranında çok yer kaplamaması için boyutları optimize ettik
-        canvas.style.width = "960px"; // Genişlik
-        canvas.style.height = "600px"; // Yükseklik (Oyunun dikeyse 450px genişlik, 800px yükseklik yapabilirsin)
-      }
-
+     } else {
+    // Masaüstü stili
+    canvas.style.width = "auto";
+    canvas.style.height = "85vh";
+}
       document.querySelector("#unity-loading-bar").style.display = "block";
 
       var script = document.createElement("script");
