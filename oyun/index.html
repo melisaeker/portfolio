@@ -28,10 +28,20 @@
 }
 
 /* Alt kısımdaki yazı ve butonların oyunun altında düzgün durması için */
+/* --- MOBİL İÇİN KRİTİK EKLEME --- */
+.unity-mobile #unity-canvas {
+  height: 75vh !important; /* Mobilde footer'a yer açmak için yüksekliği biraz kıstık */
+}
+
 #unity-footer {
-  width: auto;
-  margin-top: 10px;
+  width: 100%;
+  max-width: 450px; /* Footer'ın çok yayılmasını engeller */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
   color: white;
+  padding: 0 10px;
 }
 </style>
   </head>
