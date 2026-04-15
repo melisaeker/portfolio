@@ -7,6 +7,19 @@
     <title>Unity Web Player | CandyCrushSaga</title>
 
     <style>
+      #unity-loading-bar {
+        position: absolute;
+        z-index: 10;
+        text-align: center;
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+
+      #unity-loading-text {
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+      
       html, body {
         margin: 0;
         padding: 0;
@@ -70,6 +83,7 @@
       <canvas id="unity-canvas" width="828" height="1792"></canvas>
 
       <div id="unity-loading-bar">
+        <div id="unity-loading-text">Loading...</div>
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
         </div>
