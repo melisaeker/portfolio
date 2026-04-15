@@ -8,40 +8,29 @@
     <link rel="stylesheet" href="TemplateData/style.css">
 
     <style>
-  /* Oyunun içinde duracağı kapsayıcı */
-  #unity-container { 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh; /* Ekran yüksekliğine göre ortalar */
-  padding: 20px 0;
+  html, body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  height: 100%;
+  overflow: hidden;
 }
 
-/* İşte o meşhur auto ve vh ayarı */
+/* Ana container */
+#unity-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Canvas – kritik kısım */
 #unity-canvas {
-  width: auto !important;    /* Genişlik otomatik, oran bozulmaz */
-  height: 85vh !important;   /* Yükseklik ekranın %85'i kadar, taşma yapmaz */
-  max-width: 100%;           /* Mobilde ekrandan dışarı taşmaz */
-  border-radius: 15px;       /* UI/UX dokunuşu: Köşeleri yuvarladık */
-  box-shadow: 0 15px 35px rgba(0,0,0,0.4); /* Derinlik hissi verir */
-}
-
-/* Alt kısımdaki yazı ve butonların oyunun altında düzgün durması için */
-/* --- MOBİL İÇİN KRİTİK EKLEME --- */
-.unity-mobile #unity-canvas {
-  height: 75vh !important; /* Mobilde footer'a yer açmak için yüksekliği biraz kıstık */
-}
-
-#unity-footer {
-  width: 100%;
-  max-width: 450px; /* Footer'ın çok yayılmasını engeller */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 15px;
-  color: white;
-  padding: 0 10px;
+  aspect-ratio: 828 / 1792; /* senin canvas oranın */
+  height: 100vh;
+  max-width: 100vw;
+  width: auto;
+  display: block;
 }
 </style>
   </head>
