@@ -141,9 +141,9 @@
 
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
-          document.querySelector("#unity-progress-bar-full").style.width = (100 * progress) + "%";
-          document.querySelector("#unity-loading-text").innerText = "Loading " + Math.floor(progress * 100) + "%";
-        })
+  document.querySelector("#unity-progress-bar-full").style.width = (100 * progress) + "%";
+  document.querySelector("#unity-loading-text").innerText = "Loading " + Math.floor(progress * 100) + "%";
+});
         .then(() => {
           document.querySelector("#unity-loading-bar").style.display = "none";
         })
