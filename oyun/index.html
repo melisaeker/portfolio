@@ -48,10 +48,7 @@
         height: min(100vh, calc(100vw * 1792 / 828));
       }
 
-      #unity-loading-bar {
-        position: absolute;
-        z-index: 10;
-      }
+      
 
       #unity-warning {
         position: absolute;
@@ -93,66 +90,67 @@
     </div>
 
     <script>
-      const canvas = document.querySelector("#unity-canvas");
+  const canvas = document.querySelector("#unity-canvas");
 
-      function unityShowBanner(msg, type) {
-        const warningBanner = document.querySelector("#unity-warning");
+  function unityShowBanner(msg, type) {
+    const warningBanner = document.querySelector("#unity-warning");
 
-        const div = document.createElement("div");
-        div.innerHTML = msg;
-        div.style.padding = "10px";
-        div.style.marginBottom = "8px";
+    const div = document.createElement("div");
+    div.innerHTML = msg;
+    div.style.padding = "10px";
+    div.style.marginBottom = "8px";
 
-        if (type === "error") {
-          div.style.background = "red";
-          div.style.color = "white";
-        } else {
-          div.style.background = "yellow";
-          div.style.color = "black";
-        }
+    if (type === "error") {
+      div.style.background = "red";
+      div.style.color = "white";
+    } else {
+      div.style.background = "yellow";
+      div.style.color = "black";
+    }
 
-        warningBanner.appendChild(div);
+    warningBanner.appendChild(div);
 
-        setTimeout(() => {
-          if (div.parentNode === warningBanner) {
-            warningBanner.removeChild(div);
-          }
-        }, 5000);
+    setTimeout(() => {
+      if (div.parentNode === warningBanner) {
+        warningBanner.removeChild(div);
       }
+    }, 5000);
+  }
 
-      const buildUrl = "Build";
-      const loaderUrl = buildUrl + "/CandyCrushCV.loader.js";
+  const buildUrl = "Build";
+  const loaderUrl = buildUrl + "/CandyCrushCV.loader.js";
 
-      const config = {
-        dataUrl: buildUrl + "/CandyCrushCV.data",
-        frameworkUrl: buildUrl + "/CandyCrushCV.framework.js",
-        codeUrl: buildUrl + "/CandyCrushCV.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "CandyCrushSaga",
-        productVersion: "1.0",
-        showBanner: unityShowBanner,
-      };
+  const config = {
+    dataUrl: buildUrl + "/CandyCrushCV.data",
+    frameworkUrl: buildUrl + "/CandyCrushCV.framework.js",
+    codeUrl: buildUrl + "/CandyCrushCV.wasm",
+    streamingAssetsUrl: "StreamingAssets",
+    companyName: "DefaultCompany",
+    productName: "CandyCrushSaga",
+    productVersion: "1.0",
+    showBanner: unityShowBanner,
+  };
 
-      document.querySelector("#unity-loading-bar").style.display = "block";
+  document.querySelector("#unity-loading-bar").style.display = "block";
 
-      const script = document.createElement("script");
-      script.src = loaderUrl;
+  const script = document.createElement("script");
+  script.src = loaderUrl;
 
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-  document.querySelector("#unity-progress-bar-full").style.width = (100 * progress) + "%";
-  document.querySelector("#unity-loading-text").innerText = "Loading " + Math.floor(progress * 100) + "%";
-});
-        .then(() => {
-          document.querySelector("#unity-loading-bar").style.display = "none";
-        })
-        .catch((message) => {
-          alert(message);
-        });
-      };
+  script.onload = () => {
+    createUnityInstance(canvas, config, (progress) => {
+      document.querySelector("#unity-progress-bar-full").style.width = (100 * progress) + "%";
+      document.querySelector("#unity-loading-text").innerText =
+        "Loading " + Math.floor(progress * 100) + "%";
+    })
+    .then(() => {
+      document.querySelector("#unity-loading-bar").style.display = "none";
+    })
+    .catch((message) => {
+      alert(message);
+    });
+  };
 
-      document.body.appendChild(script);
-    </script>
+  document.body.appendChild(script);
+</script>
   </body>
 </html>
